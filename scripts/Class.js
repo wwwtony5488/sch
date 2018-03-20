@@ -48,5 +48,26 @@ class EmpSchedule {
         }
     }
 
+    sum_EmpHours(totalDays, empRow){
+        var empRow = empRow+1
+        var workTime = 0
+        for(var day=1;day<=totalDays;day++){
+            var c = parseInt(this.sch[emp][day])
+            if(c.toString()==this.sch[emp][day]){
+                workTime += 8;
+            }
+        }
+        return workTime
+    }
+    
+    sum_AllHours(totalDays, totalEmps){
+        var blockTotalHours = totalDays+3
+        for (var emp=1;emp<=totalEmps;emp++){
+            rowEmpMargin = 1
+            empSumTime = this.sum_EmpHours(totalDays, emp)
+            this.sch[emp+rwoEmpMargin][blockTotalHours] = empSumTime
+        }
+    }
+
     
 }
