@@ -1,10 +1,9 @@
 function JSBinding(Sch) {
-    $('.Break').click(function () {
+    $('.mark-type').click(function () {
         $(this).toggleClass('Selected', 2000)
     })
     $('.Arrange').click(function () {
-        Ara()
-
+        Arrange()
     })
 
     $('td.date').hover(function () {
@@ -20,14 +19,11 @@ function JSBinding(Sch) {
     })
 }
 
-function Ara() {
-    console.log(Emp)
-    //console.log(Sch)
+function Arrange() {
     for (var i = 0; i < Emp.length; i++)
         for (var j = 0; j < 28; j++)
             Sch[2 + i][j + 1] = Emp[i].previous;
 
-    //console.log(Sch)
 
     $('tr').each(function () {
         if (parseInt($(this).attr('data-r')) >= 2) {
@@ -37,12 +33,9 @@ function Ara() {
             }
         }
     })
+
     Sch= new EmpSchedule(Sch);
-    Sch.sum_Date(28, 14);
-    console.log(Sch);
-
-
-    console.log(Sch)
+    //Sch.sum_Date(28, 14);
 }
 
 
