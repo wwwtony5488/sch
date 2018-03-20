@@ -1,6 +1,7 @@
 function JSBinding(Sch) {
     $('.mark-type').click(function () {
-        $(this).toggleClass('Selected', 2000)
+        $('.Selected').removeClass('Selected');
+        $(this).addClass('Selected', 2000)
     })
     $('.Arrange').click(function () {
         Arrange()
@@ -8,15 +9,18 @@ function JSBinding(Sch) {
 
     $('td.date').hover(function () {
         $(this).parent().css('line-height', '30px').css('background', '#EFEFEF')
-        if ($('.Break.Selected').length > 0)
+        if ($('.mark-type.Selected').length > 0)
             $(this).addClass('Hover')
     }, function () {
         $(this).parent().css('line-height', '20px').css('background', 'white')
         $(this).removeClass('Hover')
     }).click(function () {
-        if ($('.Break.Selected').length > 0)
-            $(this).html(($(this).html() == '@') ? '' : '@')
-    })
+        if ($('.mark-type.Selected').length > 0)
+            $(this).html($('.mark-type.Selected').html())
+        }).dblclick(function () {
+
+
+        })
 }
 
 function Arrange() {
@@ -31,13 +35,14 @@ function Arrange() {
         if (parseInt($(this).attr('data-r')) >= 2) {
             for (var i = 0; i < 28; i++) {
                 if ($(this).find('td').eq(i + 1).html() != '')
-                    Sch[$('tr').index($(this)) - 2] [i+1]= $(this).find('td').eq(i + 1).html();
+                    Sch[$('tr').index($(this)) - 2][i + 1] = $(this).find('td').eq(i + 1).html();
             }
         }
     })
-    var Sch_E= new EmpSchedule(Sch);
+    var Sch_E = new EmpSchedule(Sch);
     //Sch.sum_Date(28, 14);
     Sch_E.sum_Date(28, 14);
+    console.log(Sch_E)
 }
 
 
@@ -76,8 +81,22 @@ function Sch_Assemble(Emp) {
     for (var i = 0; i < Sch.length; i++) {
         innerHtml += '<tr Data-R="' + i + '">'
         for (var j = 0; j < Sch[i].length; j++) {
-            if (i == 0)
-                innerHtml += (j == 0) ? '<td>date</td>' : '<td>' + Sch[i][j] + '</td>'
+            if (i == 0) {
+                if (j == 0)
+                    innerHtml += '<td>date</td>'
+                else if (j < 29)
+                    innerHtml += '<td>' + Sch[i][j] + '</td>'
+                else {
+                    innerHtml += '<td>例假</td><td>休假</td><td>工時</td><td>國假</td>';
+                    break;
+                }
+            }
+            else if (i == 1) {
+                innerHtml += '<td></td>'
+                for (var k = 0; k < 4; k++)
+                    innerHtml += '<td class="weekend">日</td><td>一</td><td>二</td><td>三</td><td>四</td><td>五</td><td class="weekend">六</td>';
+                break;
+            }
             else {
                 //innerHtml += (j == 0 && i > 1 ) ? '<td>'+Emp[i-2].Name +'</td>' : innerHtml += '<td>"1"</td>'
                 if (j == 0 && i > 1 && i < (Emp.length + 2)) {

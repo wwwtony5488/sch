@@ -97,23 +97,27 @@
     html {
     }
 
-    .Break, .Arrange  , .mark-type{
+    .Break, .Arrange, .mark-type {
         border: 1px solid #333;
         border-radius: 3px;
         padding: 3px 6px;
         cursor: pointer;
         transition: .5s;
     }
-
+    .weekend{
+        background:#EEE
+    }
     td {
         min-width: 28px !important;
         cursor: pointer;
     }
-
         .mark-type.Selected,
         td.Hover {
             background-color: gray;
             color: white;
+        }
+        tr td:nth-child(15){
+            border-right: 2px solid gray;
         }
 </style>
 
