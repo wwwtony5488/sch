@@ -23,31 +23,35 @@ class EmpSchedule {
         var blockFirstSum = totalEmps + 2 + header
         var blockSecondSum = totalEmps + 3 + header
         var blockThirdSum = totalEmps + 4 + header
-        for (var day=1;day<=totalDays;day++){
+        for (var day = 1; day <= totalDays; day++) {
             var dailySum = 0;
             var dailyFirstSum = 0;
             var dailySecondSum = 0;
             var dailyThirdSum = 0;
-            for(var emp=2;emp<totalEmps+2;emp++){
-                var c = parseInt(this.sch[emp][day])
-                if(c.toString() == this.sch[emp][day]){
-                    dailySum+=1
-                }
-                if(this.sch[emp][day]==1){
-                    dailyFirstSum += 1
-                }else if(this.sch[emp][day]==2){
-                    dailySecondSum += 1
-                }else if(this.sch[emp][day]==3){
-                    dailyThirdSum += 1
-                }
-            }
-            this.sch[blockSumAll][day] = dailySum
-            this.sch[blockFirstSum][day] =  dailyFirstSum
-            this.sch[blockSecondSum][day] = dailySecondSum
-            this.sch[blockThirdSum][day] = dailyThirdSum
-        }
-    }
+            for (var emp = 2; emp <= totalEmps; emp++) {
+                dailySum += this.sch[emp][day]
+                for (var emp = 2; emp < totalEmps + 2; emp++) {
+                    var c = parseInt(this.sch[emp][day])
+                    if (c.toString() == this.sch[emp][day]) {
+                        dailySum += 1
+                    }
 
+                    if (this.sch[emp][day] == 1) {
+                        dailyFirstSum += 1
+                    } else if (this.sch[emp][day] == 2) {
+                        dailySecondSum += 1
+                    } else if (this.sch[emp][day] == 3) {
+                        dailyThirdSum += 1
+                    }
+                }
+                this.sch[blockSumAll][day] = dailySum
+                this.sch[blockFirstSum][day] = dailyFirstSum
+                this.sch[blockSecondSum][day] = dailySecondSum
+                this.sch[blockThirdSum][day] = dailyThirdSum
+            }
+        }
+
+<<<<<<< HEAD
     sum_EmpHours(totalDays, empRow){
         var empRow = empRow+1
         var workTime = 0
@@ -71,3 +75,8 @@ class EmpSchedule {
 
     
 }
+=======
+
+    }
+}
+>>>>>>> 39094b036bad3e043aa3c07af83dbc0a2c734ba4
