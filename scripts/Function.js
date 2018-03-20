@@ -27,16 +27,21 @@ function Ara() {
         for (var j = 0; j < 28; j++)
             Sch[2 + i][j + 1] = Emp[i].previous;
 
-    console.log(Sch)
+    //console.log(Sch)
 
     $('tr').each(function () {
         if (parseInt($(this).attr('data-r')) >= 2) {
             for (var i = 0; i < 28; i++) {
                 if ($(this).find('td').eq(i + 1).html() != '')
-                    Sch[$('tr').index($(this)) - 2] = $(this).find('td').eq(i + 1).html();
+                    Sch[$('tr').index($(this)) - 2] [i+1]= $(this).find('td').eq(i + 1).html();
             }
         }
     })
+    Sch= new EmpSchedule(Sch);
+    Sch.sum_Date(28, 14);
+    console.log(Sch);
+
+
     console.log(Sch)
 }
 

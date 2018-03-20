@@ -18,16 +18,16 @@ class EmpSchedule {
     *   
     */
     sum_Date(totalDays, totalEmps) {
-        header = 2
-        blockSumAll = totalEmps + 1 + header
-        blockFirstSum = totalEmps + 2 + header
-        blockSecondSum = totalEmps + 3 + header
-        blockThirdSum = totalEmps + 4 + header
+        var header = 2
+        var blockSumAll = totalEmps + 1 + header
+        var blockFirstSum = totalEmps + 2 + header
+        var blockSecondSum = totalEmps + 3 + header
+        var blockThirdSum = totalEmps + 4 + header
         for (var day=1;day<=totalDays;day++){
-            dailySum = 0;
-            dailyFirstSum = 0;
-            dailySecondSum = 0;
-            dailyThirdSum = 0;
+            var dailySum = 0;
+            var dailyFirstSum = 0;
+            var dailySecondSum = 0;
+            var dailyThirdSum = 0;
             for(var emp=2;emp<=totalEmps;emp++){
                 dailySum += this.sch[emp][day]
                 if(this.sch[emp][day]==1){
