@@ -18,10 +18,16 @@ function JSBinding(Sch) {
     if ($('.Break.Selected').length > 0)
       $(this).html(($(this).html() == '@') ? '' : '@')
   })
-  console.log(Emp)
 }
 
 function Ara() {
+
+
+
+
+
+
+    console.log(Emp)
   $('tr').each(function() {
       if(parseInt(  $(this).attr('data-r'))>=2){
 
@@ -74,7 +80,6 @@ function Sch_Assemble(Emp) {
       else {
         //innerHtml += (j == 0 && i > 1 ) ? '<td>'+Emp[i-2].Name +'</td>' : innerHtml += '<td>"1"</td>'
         if (j == 0 && i > 1 && i < (Emp.length + 2)) {
-          console.log(Emp)
           innerHtml += '<td>' + Emp[i - 2].Name + '</td>'
         } else innerHtml += '<td class="date"></td>'
       }
