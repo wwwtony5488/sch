@@ -50,8 +50,8 @@ class EmpSchedule {
                 this.sch[blockThirdSum][day] = dailyThirdSum
             }
         }
+    }
 
-<<<<<<< HEAD
     sum_EmpHours(totalDays, empRow){
         var empRow = empRow+1
         var workTime = 0
@@ -75,8 +75,3 @@ class EmpSchedule {
 
     
 }
-=======
-
-    }
-}
->>>>>>> 39094b036bad3e043aa3c07af83dbc0a2c734ba4
