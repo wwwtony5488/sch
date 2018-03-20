@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title></title>
+  <meta charset="utf-8" />
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
+  </script>
+  <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+
+  <link rel="stylesheet/less" type="text/css" href="Master.less" />
+  <script>
+    less = {
+      env: "development" -
+    };
+  </script>
+  <script type="text/javascript" str="https://cdnjs.cloudflare.com/ajax/libs/less.js/3.0.1/less.js"></script>
+  <script src="scripts/Class.js"></script>
+  <script src="scripts/Function.js"></script>
+  <script src="scripts/Rule.js"></script>
+  <script src="scripts/TestModel.js"></script>
+  <script type="text/javascript">
+    //15人:prefer----->
+    //組長 小夜班5天
+    var start_date = new Date()
+    var innerHtml = ''
+    /*var Global_Conditional = {
+    }*/
+    //var sch_set = ['N', 'E', 'D'];
+    var Sch
+    var Emp = GetModel()
+
+    function Main() {
+      InitializeArray(Emp);
+      console.log(Emp)
+      //初始化陣列
+      Emp = Emp_Assemble(Emp);
+      //於前端取得的資料組成合適class
+      Sch_Assemble(Emp);
+
+
+      while (true)
+        if (Verify(Sch)) {
+          Template(Sch);
+          JSBinding(Sch);
+          break;
+        }
+      else
+        Adjust(Sch)
+    }
+    $(function() {
+      Main();
+    })
+  </script>
+  <script type="text/javascript">
+  </script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="button-container">
+      <label class="Break">
+        假日否
+      </label>
+      <label class="Arrange">
+        排班
+      </label>
+    </div>
+
+    <div class="table-container">
+
+    </div>
+  </div>
+
+</body>
+
+<style>
+  html table,
+  html {}
+
+  .Break ,.Arrange {
+    border: 1px solid #333;
+    border-radius: 3px;
+    padding: 3px 6px;
+    cursor: pointer;
+    transition: .5s;
+  }
+
+  td {
+    min-width: 28px !important;
+    cursor: pointer;
+  }
+
+  .Break.Selected,
+  td.Hover {
+    background-color: gray;
+    color: white;
+  }
+</style>
+
+</html>
