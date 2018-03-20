@@ -20,6 +20,8 @@ function JSBinding(Sch) {
 }
 
 function Arrange() {
+    console.log(Sch)
+    console.log(Emp)
     for (var i = 0; i < Emp.length; i++)
         for (var j = 0; j < 28; j++)
             Sch[2 + i][j + 1] = Emp[i].previous;
@@ -33,9 +35,9 @@ function Arrange() {
             }
         }
     })
-
-    Sch= new EmpSchedule(Sch);
+    var Sch_E= new EmpSchedule(Sch);
     //Sch.sum_Date(28, 14);
+    Sch_E.sum_Date(28, 14);
 }
 
 
