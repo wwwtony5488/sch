@@ -37,11 +37,11 @@ function Ara() {
             }
         }
     })
+    console.log('original sch')
+    console.log(Sch);
     Sch= new EmpSchedule(Sch);
     Sch.sum_Date(28, 14);
-    console.log(Sch);
-
-
+    console.log('summed sch')
     console.log(Sch)
 }
 
