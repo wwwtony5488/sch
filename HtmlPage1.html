@@ -1,9 +1,9 @@
 ﻿<!DOCTYPE html>
 
 <style>
-    
-    html table  {
-        user-select:none;
+
+    html table {
+        user-select: none;
     }
 
     .Break, .Arrange, .mark-type {
@@ -12,7 +12,7 @@
         padding: 3px 6px;
         cursor: pointer;
         transition: .5s;
-        min-width:45px;
+        min-width: 45px;
     }
 
     .weekend {
@@ -23,16 +23,19 @@
         min-width: 35px !important;
         cursor: pointer;
     }
-        .mark-type.Selected,td.Selected,
-        td.date:hover{
+
+        .mark-type.Selected, td.Selected,
+        td.date:hover {
             background-color: gray;
             color: white;
         }
+
     tr td:nth-child(15), tr td:nth-child(22), tr td:nth-child(8), tr td:nth-child(1), tr td:nth-child(29) {
         border-right: 1.5px solid gray;
     }
-    td [type="text"]{
-        width:50px;
+
+    td [type="text"] {
+        width: 50px;
     }
 </style>
 
@@ -60,26 +63,26 @@
     <script type="text/javascript">
         //15人:prefer----->
         //組長 小夜班5天
-        var start_date = new Date()
-        var innerHtml = ''
+        var innerHtml = '';
         /*var Global_Conditional = {
         }*/
         //var sch_set = ['N', 'E', 'D'];
-        var Sch
-        var Emp = GetModel()
+        //var Sch;
 
         function Main() {
-            InitializeArray(Emp);
+
+            var Emp = GetModel();
+            var Sch = InitializeArray(Emp);
+            var Sch_E = new EmpSchedule(Sch);
+            //console.log(Sch_E)
             //初始化陣列
             Emp = Emp_Assemble(Emp);
             //於前端取得的資料組成合適class
-            Sch_Assemble(Emp);
-
-
+            Template_Assemble(Emp,Sch);
             while (true)
                 if (Verify(Sch)) {
-                    Template(Sch);
-                    JSBinding(Sch);
+                    Template(Sch_E);
+                    JSBinding(Sch_E,Emp);
                     break;
                 }
                 else
@@ -106,7 +109,7 @@
             <label class="mark-type">H</label>
             <label class="mark-type">H3</label>
             <label class="mark-type">$</label>
-            <label class="mark-type">$$</label><br/>
+            <label class="mark-type">$$</label><br />
             <label class="mark-type">#</label>
             <label class="mark-type">@</label>
             <label class="mark-type">B1</label>

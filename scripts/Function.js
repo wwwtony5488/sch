@@ -1,59 +1,94 @@
-function JSBinding(Sch) {
+
+
+function JSBinding(Sch_E, Emp) {
     $('.mark-type').click(function () {
         $(this).toggleClass('Selected').siblings().removeClass('Selected');
     })
     $('.Arrange').click(function () {
-        Arrange()
+        Arrange(Sch_E, Emp)
     })
-
     $('td.date').mousedown(function () {
+        $(this).addClass('Selected').addClass('Changed');
         $('td.date').hover(function () {
             if ($('.mark-type.Selected').length > 0)
-                $(this).addClass('Selected');
+                $(this).addClass('Selected').addClass('Changed');;
             //$(this).html(($('.mark-type.Selected').html() == '休') ? '' : $('.mark-type.Selected').html())
         })
     }).mouseup(function () {
         $('td.date').unbind('mouseenter').unbind('mouseleave')
-        var c = confirm('確認此次的範圍編輯?')
-        if (c)
-            $('td.Selected').html(($('.mark-type.Selected').html() == '休') ? '' : $('.mark-type.Selected').html())
-        $('td.Selected').removeClass('Selected')
+        if ($('td.Selected').length > 0) {
+            var c = false
+            if ($('td.Selected').length > 1)
+                c = confirm('確認此次的範圍編輯?')
+            if (c || $('td.Selected').length == 1)
+                $('td.Selected').html(($('.mark-type.Selected').html() == '休') ? '' : $('.mark-type.Selected').html())
+            $('td.Selected').removeClass('Selected')
+            Renew(Sch_E, Emp.length);
+        }
     }).dblclick(function () {
+        $(this).addClass('Changed')
+        if ($('.mark-type.Selected').length > 0)
+            return;
         var tddate = $(this)
         tddate.html(' <input  class="" type="text"  value="' + $(this).text() + '"/>')
         $('td input').focus();
         $('td input').blur(function () {
             tddate.html($(this).val());
+
+            Renew(Sch_E, Emp.length);
         })
+
     })
 }
-function Arrange() {
-    console.log(Sch)
-    console.log(Emp)
+function Arrange(Sch_E, Emp) {
+    //以前次最後一筆  填滿空格
+    console.log(Sch_E.sch)
+
     for (var i = 0; i < Emp.length; i++)
         for (var j = 0; j < 28; j++)
-            Sch[2 + i][j + 1] = Emp[i].previous;
-
-
+            Sch_E.sch[2 + i][j + 1] = Emp[i].previous;
     $('tr').each(function () {
         if (parseInt($(this).attr('data-r')) >= 2) {
             for (var i = 0; i < 28; i++) {
                 if ($(this).find('td').eq(i + 1).html() != '')
-                    Sch[$('tr').index($(this)) - 2][i + 1] = $(this).find('td').eq(i + 1).html();
+                    Sch_E.sch[$('tr').index($(this)) - 1][i + 1] = $(this).find('td').eq(i + 1).html();
             }
         }
     })
-    var Sch_E = new EmpSchedule(Sch);
+    console.log(Sch_E)
+
+
+    //Sch_E= new EmpSchedule(Sch);
     //Sch.sum_Date(28, 14);
     Sch_E.sum_Date(28, 14);
     console.log(Sch_E)
+    Renew(Sch_E, Emp.length);
+}
+function Renew(Sch_E, EL) {
+    //Bind Sch
+
+    for (var i = 0; i < EL + 4; i++)
+        for (var j = 0; j < (32); j++) {
+            var seltor = $('table tr ').eq(i + 3).find('td').eq(j + 1)
+            if (seltor.hasClass('Changed'))
+                Sch_E.sch[i + 2][j + 1] = seltor.text();
+        }
+    //ReCalculate
+
+    //Display Sch
+    for (var i = 0; i < EL + 4; i++)
+        for (var j = 0; j < (32); j++)
+            $('table tr ').eq(i + 3).find('td').eq(j + 1).text(Sch_E.sch[i + 2][j + 1]);
+    //Alert 
+    $('.Changed').removeClass('Changed');
+    console.log('RN');
 }
 
-
 function InitializeArray(Emp) {
-    Sch = Array((2 + Emp.length + 4)) //2 name+28 d+ 4 Count
+    var Sch = Array((2 + Emp.length + 4)) //2 name+28 d+ 4 Count
     for (var i = 0; i < Sch.length; i++)
         Sch[i] = Array(33)
+    return Sch;
 }
 
 function Emp_Assemble(Emp) {
@@ -65,14 +100,8 @@ function Emp_Assemble(Emp) {
     return Emp
 }
 
-function Sch_Assemble(Emp) {
+function Template_Assemble(Emp, Sch) {
     //console.log( start_date.getDate())
-    Sch[0][0] = 'Date'
-    start_date.setDate(4)
-    for (var i = 0; i < 28; i++) {
-        Sch[0][i + 1] = start_date.getDate()
-        start_date.setDate((start_date.getDate() + 1))
-    }
     //先標出例假
     //從avoid 多的人先排
     /**員工資料轉成行事曆class
