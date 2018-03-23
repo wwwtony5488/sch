@@ -6,35 +6,27 @@ function JSBinding(Sch) {
         Arrange()
     })
 
-    $('td.date')/*.hover(function () {
-        $(this).parent().css('background', '#EFEFEF')
-        //.css('line-height', '30px')
-        if ($('.mark-type.Selected').length > 0)
-            $(this).addClass('Hover')
-    }, function () {
-        $(this).parent().css('background', 'white')
-        //.css('line-height', '20px')
-        $(this).removeClass('Hover')
-        })*/.mousedown(function () {
-            $('td.date').hover(function () {
-                if ($('.mark-type.Selected').length > 0)
-                    $(this).html(($('.mark-type.Selected').html() == '休') ? '' : $('.mark-type.Selected').html())
-            })
-        }
-        ).mouseup(function () {
-            $('td.date').unbind('mouseenter').unbind('mouseleave')
+    $('td.date').mousedown(function () {
+        $('td.date').hover(function () {
+            if ($('.mark-type.Selected').length > 0)
+                $(this).addClass('Selected');
+            //$(this).html(($('.mark-type.Selected').html() == '休') ? '' : $('.mark-type.Selected').html())
         })
-
-        .dblclick(function () {
-            var tddate = $(this)
-            tddate.html(' <input  class="" type="text"  value="' + $(this).text() + '"/>')
-            $('td input').focus();
-            $('td input').blur(function () {
-                tddate.html($(this).val());
-            })
+    }).mouseup(function () {
+        $('td.date').unbind('mouseenter').unbind('mouseleave')
+        var c = confirm('確認此次的範圍編輯?')
+        if (c)
+            $('td.Selected').html(($('.mark-type.Selected').html() == '休') ? '' : $('.mark-type.Selected').html())
+        $('td.Selected').removeClass('Selected')
+    }).dblclick(function () {
+        var tddate = $(this)
+        tddate.html(' <input  class="" type="text"  value="' + $(this).text() + '"/>')
+        $('td input').focus();
+        $('td input').blur(function () {
+            tddate.html($(this).val());
         })
+    })
 }
-
 function Arrange() {
     console.log(Sch)
     console.log(Emp)
