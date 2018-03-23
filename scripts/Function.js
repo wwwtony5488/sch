@@ -1,25 +1,37 @@
 function JSBinding(Sch) {
     $('.mark-type').click(function () {
-        $('.Selected').removeClass('Selected');
-        $(this).addClass('Selected', 2000)
+        $(this).toggleClass('Selected').siblings().removeClass('Selected');
     })
     $('.Arrange').click(function () {
         Arrange()
     })
 
-    $('td.date').hover(function () {
-        $(this).parent().css('line-height', '30px').css('background', '#EFEFEF')
+    $('td.date')/*.hover(function () {
+        $(this).parent().css('background', '#EFEFEF')
+        //.css('line-height', '30px')
         if ($('.mark-type.Selected').length > 0)
             $(this).addClass('Hover')
     }, function () {
-        $(this).parent().css('line-height', '20px').css('background', 'white')
+        $(this).parent().css('background', 'white')
+        //.css('line-height', '20px')
         $(this).removeClass('Hover')
-    }).click(function () {
-        if ($('.mark-type.Selected').length > 0)
-            $(this).html($('.mark-type.Selected').html())
-        }).dblclick(function () {
+        })*/.mousedown(function () {
+            $('td.date').hover(function () {
+                if ($('.mark-type.Selected').length > 0)
+                    $(this).html(($('.mark-type.Selected').html() == '休') ? '' : $('.mark-type.Selected').html())
+            })
+        }
+        ).mouseup(function () {
+            $('td.date').unbind('mouseenter').unbind('mouseleave')
+        })
 
-
+        .dblclick(function () {
+            var tddate = $(this)
+            tddate.html(' <input  class="" type="text"  value="' + $(this).text() + '"/>')
+            $('td input').focus();
+            $('td input').blur(function () {
+                tddate.html($(this).val());
+            })
         })
 }
 
