@@ -1,4 +1,41 @@
 ﻿<!DOCTYPE html>
+
+<style>
+    
+    html table  {
+        user-select:none;
+    }
+
+    .Break, .Arrange, .mark-type {
+        border: 1px solid #333;
+        border-radius: 3px;
+        padding: 3px 6px;
+        cursor: pointer;
+        transition: .5s;
+        min-width:45px;
+    }
+
+    .weekend {
+        background: #EEE
+    }
+
+    td {
+        min-width: 35px !important;
+        cursor: pointer;
+    }
+        .mark-type.Selected,td.Selected,
+        td.date:hover{
+            background-color: gray;
+            color: white;
+        }
+    tr td:nth-child(15), tr td:nth-child(22), tr td:nth-child(8), tr td:nth-child(1), tr td:nth-child(29) {
+        border-right: 1.5px solid gray;
+    }
+    td [type="text"]{
+        width:50px;
+    }
+</style>
+
 <html>
 
 <head>
@@ -57,7 +94,7 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container" style="margin:0px;">
         <div class="button-container">
             <label class="mark-type">A</label>
             <label class="mark-type">B</label>
@@ -69,7 +106,7 @@
             <label class="mark-type">H</label>
             <label class="mark-type">H3</label>
             <label class="mark-type">$</label>
-            <label class="mark-type">$$</label>
+            <label class="mark-type">$$</label><br/>
             <label class="mark-type">#</label>
             <label class="mark-type">@</label>
             <label class="mark-type">B1</label>
@@ -80,6 +117,8 @@
             <label class="mark-type">1</label>
             <label class="mark-type">2</label>
             <label class="mark-type">3</label>
+
+            <label class="mark-type empty">休</label>
             <label class="Arrange">
                 排班
             </label>
@@ -91,34 +130,5 @@
     </div>
 
 </body>
-
-<style>
-    html table,
-    html {
-    }
-
-    .Break, .Arrange, .mark-type {
-        border: 1px solid #333;
-        border-radius: 3px;
-        padding: 3px 6px;
-        cursor: pointer;
-        transition: .5s;
-    }
-    .weekend{
-        background:#EEE
-    }
-    td {
-        min-width: 28px !important;
-        cursor: pointer;
-    }
-        .mark-type.Selected,
-        td.Hover {
-            background-color: gray;
-            color: white;
-        }
-        tr td:nth-child(15){
-            border-right: 2px solid gray;
-        }
-</style>
 
 </html>
