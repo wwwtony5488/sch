@@ -1,4 +1,5 @@
 
+//test slack=git
 
 function JSBinding(Sch_E, Emp) {
     $('.mark-type').click(function () {
