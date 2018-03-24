@@ -1,11 +1,12 @@
 
 //test slack=git
 
-var PA = $('#PA-Temp').html();
-var NC = $('#N-Class-Temp').html();
 
 
 function JSBinding(Sch_E, Emp) {
+    $('')
+
+
     $('.mark-type').click(function () {
         $(this).toggleClass('Selected').siblings().removeClass('Selected');
     })
@@ -168,13 +169,12 @@ function Template_Assemble(Emp, Sch) {
 function Emp_Set() {
 
 }
-function Emp_Template(Emp) {
+function Emp_Template(Emp,PA,NC) {
     console.log(Emp)
-    for (let  i = 0; i < length; i++) {
-        let iH = ''; 
-        $('.Emp-Config ').append( )
-
-        Emp[i].Name
+    for (let i = 0; i < Emp.length; i++) {
+        let iH = '<div><span>' + Emp[i].Name + '</span><div>群組: '+NC+' , 偏好:'+PA+' , 避開:'+PA+'</div></div>';
+        $('.Emp-Config .list  ').append(iH)
+        //Emp[i].Name
     }
 }
 

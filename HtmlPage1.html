@@ -81,13 +81,18 @@
     <script type="text/javascript">
         //15人:prefer----->
         //組長 小夜班5天
-        var innerHtml = '';
         /*var Global_Conditional = {
         }*/
         //var sch_set = ['N', 'E', 'D'];
         //var Sch;
+        var innerHtml = '';
 
         function Main() {
+
+            var PA = $('#PA-Temp').html();
+            var NC = $('#N-class-Temp').html();
+            /*console.log($('#PA-Temp').html())
+            console.log(NC)*/
 
             var Emp = GetModel();
             var Sch = InitializeArray(Emp);
@@ -99,7 +104,7 @@
             Template_Assemble(Emp, Sch);
 
             Emp_Set()
-            Emp_Template(Emp)
+            Emp_Template(Emp,PA,NC)
             while (true)
                 if (Verify(Sch)) {
                     Template(Sch_E);
@@ -149,8 +154,8 @@
         </div>
         <div class="control-panel" style="float:right">
             <span class=" menu glyphicon glyphicon-list-alt"></span>
-            <div class="Emp-Config config"><span>員工設定</span></div>
-            <div class="Set-Config config"><span>系統設定</span></div>
+            <div class="Emp-Config config"><span>員工設定</span><div class="list"></div></div>
+            <div class="Set-Config config"><span>系統設定</span><div class="list"></div></div>
         </div>
 
         <div class="table-container">
@@ -202,25 +207,40 @@
 
         .control-panel > div {
             border: 1px solid white;
-            height: 50px;
+            height: auto;
             width: 100%;
             color: white;
             font-size: 1.2em;
             line-height: 100%;
             text-align: center;
-            transition: .2s
+            transition: 1s;
+            overflow:hidden;
+        }
+            .control-panel > div>span{
+                line-height:50px;
+            }
+
+            .control-panel select {
+                color: black
+            }
+
+        .control-panel > div:hover {
+            /*//height: auto;*/
         }
 
-            .control-panel > div:hover {
-                height: 350px;
-            }
+        .control-panel .list  > div {
+            height: 1.5em;
+            width: 100%;
+            border: 1px solid white;
+            overflow: hidden
+        }
 
-            .control-panel > div > div {
-                height: 50px;
-                width: 100%;
-            }
-
-                .control-panel > div > div:hover {
+                .control-panel .list div:hover {
                     height: 75px;
                 }
+        .control-panel .list > div > span {
+            line-height: 1.5em;
+        }
+                
 </style>
+-*
