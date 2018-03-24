@@ -44,8 +44,8 @@ function JSBinding(Sch_E, Emp) {
 function Arrange(Sch_E, Emp) {
     //以前次最後一筆  填滿空格
     console.log(Sch_E.sch)
-
-    for (var i = 0; i < Emp.length; i++)
+    var El = Emp.length
+    for (var i = 0; i < El ; i++)
         for (var j = 0; j < 28; j++)
             Sch_E.sch[2 + i][j + 1] = Emp[i].previous;
     $('tr').each(function () {
@@ -61,23 +61,27 @@ function Arrange(Sch_E, Emp) {
 
     //Sch_E= new EmpSchedule(Sch);
     //Sch.sum_Date(28, 14);
-    Sch_E.sum_Date(28, 14);
+    
     console.log(Sch_E)
-    Renew(Sch_E, Emp.length);
+    Renew(Sch_E, El);
 }
-function Renew(Sch_E, EL) {
+function Renew(Sch_E, El) {
     //Bind Sch
 
-    for (var i = 0; i < EL + 4; i++)
+    for (var i = 0; i < El + 4; i++)
         for (var j = 0; j < (32); j++) {
             var seltor = $('table tr ').eq(i + 3).find('td').eq(j + 1)
             if (seltor.hasClass('Changed'))
                 Sch_E.sch[i + 2][j + 1] = seltor.text();
         }
     //ReCalculate
+    Sch_E.sum_Date(28, El);
+
+    //Renew(Sch_E, El);
+
 
     //Display Sch
-    for (var i = 0; i < EL + 4; i++)
+    for (var i = 0; i < El + 4; i++)
         for (var j = 0; j < (32); j++)
             $('table tr ').eq(i + 3).find('td').eq(j + 1).text(Sch_E.sch[i + 2][j + 1]);
     //Alert 
@@ -133,9 +137,18 @@ function Template_Assemble(Emp, Sch) {
             }
             else {
                 //innerHtml += (j == 0 && i > 1 ) ? '<td>'+Emp[i-2].Name +'</td>' : innerHtml += '<td>"1"</td>'
-                if (j == 0 && i > 1 && i < (Emp.length + 2)) {
-                    innerHtml += '<td>' + Emp[i - 2].Name + '</td>'
-                } else innerHtml += '<td class="date"></td>'
+                if (j == 0) {
+                    if (i > 1 && i < (Emp.length + 2))
+                        innerHtml += '<td>' + Emp[i - 2].Name + '</td>'
+                    if (i == Emp.length + 2)
+                        innerHtml += '<td>總人力</td>'; if (i == Emp.length + 3)
+                        innerHtml += '<td>人力1</td>'; if (i == Emp.length + 4)
+                        innerHtml += '<td>總人力2</td>'; if (i == Emp.length + 5)
+                        innerHtml += '<td>總人力3</td>'
+                }
+
+
+                else innerHtml += '<td class="date"></td>'
             }
         }
         innerHtml += '</tr>'
