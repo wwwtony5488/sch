@@ -6,6 +6,11 @@
         user-select: none;
     }
 
+    .container {
+        width: 1900px !important;
+    }
+
+
     .Break, .Arrange, .mark-type {
         border: 1px solid #333;
         border-radius: 3px;
@@ -22,6 +27,7 @@
     td {
         min-width: 35px !important;
         cursor: pointer;
+        text-align: center;
     }
 
         .mark-type.Selected, td.Selected,
@@ -30,9 +36,20 @@
             color: white;
         }
 
-    tr td:nth-child(15), tr td:nth-child(22), tr td:nth-child(8), tr td:nth-child(1), tr td:nth-child(29) {
-        border-right: 1.5px solid gray;
+    tr td:nth-child(15), tr td:nth-child(8), tr td:nth-child(1), tr td:nth-child(22) {
+        border-right: 1.5px solid gray !important;
     }
+
+    table tr:nth-child(17) td {
+        border-top: 3px solid gray !important;
+    }
+
+    table tr td:nth-child(29) {
+        border-right: 3px solid gray !important;
+    }
+
+
+
 
     td [type="text"] {
         width: 50px;
@@ -45,10 +62,11 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
     <meta charset="utf-8" />
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
-    </script>
-    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
     <link rel="stylesheet/less" type="text/css" href="Master.less" />
@@ -78,11 +96,14 @@
             //初始化陣列
             Emp = Emp_Assemble(Emp);
             //於前端取得的資料組成合適class
-            Template_Assemble(Emp,Sch);
+            Template_Assemble(Emp, Sch);
+
+            Emp_Set()
+            Emp_Template(Emp)
             while (true)
                 if (Verify(Sch)) {
                     Template(Sch_E);
-                    JSBinding(Sch_E,Emp);
+                    JSBinding(Sch_E, Emp);
                     break;
                 }
                 else
@@ -96,8 +117,8 @@
     </script>
 </head>
 
-<body>
-    <div class="container" style="margin:0px;">
+<body style="max-width:1900px">
+    <div class="container" style="margin:0px 15px;">
         <div class="button-container">
             <label class="mark-type">A</label>
             <label class="mark-type">B</label>
@@ -126,12 +147,80 @@
                 排班
             </label>
         </div>
+        <div class="control-panel" style="float:right">
+            <span class=" menu glyphicon glyphicon-list-alt"></span>
+            <div class="Emp-Config config"><span>員工設定</span></div>
+            <div class="Set-Config config"><span>系統設定</span></div>
+        </div>
 
         <div class="table-container">
 
         </div>
     </div>
-
+    <div id="N-class-Temp">
+        <select>
+            <option></option>
+            <option>N1</option>
+            <option>N2</option>
+            <option>N3</option>
+            <option>N4</option>
+        </select>
+    </div>
+    <div id="PA-Temp">
+        <select>
+            <option></option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+        </select>
+    </div>
 </body>
 
 </html>
+<style>
+    .control-panel {
+        width: 300px;
+        height: 600px;
+        border: 1px solid gray;
+        border-radius: 5px;
+        left: -300px;
+        position: absolute;
+        transition: .2s;
+        background-color: #444;
+    }
+
+        .control-panel:hover {
+            left: 0px;
+        }
+
+        .control-panel .menu {
+            position: absolute;
+            left: 150px;
+            zoom: 2;
+            cursor: pointer;
+        }
+
+        .control-panel > div {
+            border: 1px solid white;
+            height: 50px;
+            width: 100%;
+            color: white;
+            font-size: 1.2em;
+            line-height: 100%;
+            text-align: center;
+            transition: .2s
+        }
+
+            .control-panel > div:hover {
+                height: 350px;
+            }
+
+            .control-panel > div > div {
+                height: 50px;
+                width: 100%;
+            }
+
+                .control-panel > div > div:hover {
+                    height: 75px;
+                }
+</style>

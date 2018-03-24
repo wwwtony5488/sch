@@ -1,6 +1,10 @@
 
 //test slack=git
 
+var PA = $('#PA-Temp').html();
+var NC = $('#N-Class-Temp').html();
+
+
 function JSBinding(Sch_E, Emp) {
     $('.mark-type').click(function () {
         $(this).toggleClass('Selected').siblings().removeClass('Selected');
@@ -45,7 +49,7 @@ function Arrange(Sch_E, Emp) {
     //以前次最後一筆  填滿空格
     console.log(Sch_E.sch)
     var El = Emp.length
-    for (var i = 0; i < El ; i++)
+    for (var i = 0; i < El; i++)
         for (var j = 0; j < 28; j++)
             Sch_E.sch[2 + i][j + 1] = Emp[i].previous;
     $('tr').each(function () {
@@ -61,7 +65,7 @@ function Arrange(Sch_E, Emp) {
 
     //Sch_E= new EmpSchedule(Sch);
     //Sch.sum_Date(28, 14);
-    
+
     console.log(Sch_E)
     Renew(Sch_E, El);
 }
@@ -159,6 +163,21 @@ function Template_Assemble(Emp, Sch) {
     var s = new EmpSchedule(Sch);
     s.test_cal();*/
 }
+
+
+function Emp_Set() {
+
+}
+function Emp_Template(Emp) {
+    console.log(Emp)
+    for (let  i = 0; i < length; i++) {
+        let iH = ''; 
+        $('.Emp-Config ').append( )
+
+        Emp[i].Name
+    }
+}
+
 
 function Verify(Sch) {
     return true;
