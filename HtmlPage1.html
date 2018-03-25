@@ -1,16 +1,11 @@
 ﻿<!DOCTYPE html>
-
 <style>
-
     html table {
         user-select: none;
     }
-
     .container {
         width: 1900px !important;
     }
-
-
     .Break, .Arrange, .mark-type {
         border: 1px solid #333;
         border-radius: 3px;
@@ -19,17 +14,14 @@
         transition: .5s;
         min-width: 45px;
     }
-
     .weekend {
         background: #EEE
     }
-
     td {
         min-width: 35px !important;
         cursor: pointer;
         text-align: center;
     }
-
         .mark-type.Selected, td.Selected,
         td.date:hover {
             background-color: gray;
@@ -104,7 +96,7 @@
             Template_Assemble(Emp, Sch);
 
             Emp_Set()
-            Emp_Template(Emp,PA,NC)
+            Emp_Template(Emp, PA, NC)
             while (true)
                 if (Verify(Sch)) {
                     Template(Sch_E);
@@ -183,9 +175,13 @@
 
 </html>
 <style>
+    #PA-Temp, #N-class-Temp {
+        display: none;
+    }
+
     .control-panel {
         width: 300px;
-        height: 600px;
+        min-height: 600px;
         border: 1px solid gray;
         border-radius: 5px;
         left: -300px;
@@ -214,33 +210,38 @@
             line-height: 100%;
             text-align: center;
             transition: 1s;
-            overflow:hidden;
+            overflow: hidden;
         }
-            .control-panel > div>span{
-                line-height:50px;
+
+            .control-panel > div > span {
+                line-height: 50px;
+                display:block;
             }
 
-            .control-panel select {
-                color: black
-            }
+        .control-panel select {
+            color: black
+        }
 
         .control-panel > div:hover {
             /*//height: auto;*/
         }
 
-        .control-panel .list  > div {
+        .control-panel .list > div {
             height: 1.5em;
             width: 100%;
             border: 1px solid white;
             overflow: hidden
         }
 
-                .control-panel .list div:hover {
-                    height: 75px;
-                }
+        .control-panel .list div:hover {
+            height: auto;
+        }
+
         .control-panel .list > div > span {
             line-height: 1.5em;
         }
-                
+
+    .unfold ~ .list  div {
+        height:auto;
+    }
 </style>
--*
