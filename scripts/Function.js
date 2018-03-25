@@ -4,7 +4,9 @@
 
 
 function JSBinding(Sch_E, Emp) {
-    $('')
+    $('.Emp-Config > span').click(function () {
+        $(this).toggleClass('unfold');
+    })
 
 
     $('.mark-type').click(function () {
@@ -169,11 +171,24 @@ function Template_Assemble(Emp, Sch) {
 function Emp_Set() {
 
 }
-function Emp_Template(Emp,PA,NC) {
+function Emp_Template(Emp, PA, NC) {
     console.log(Emp)
     for (let i = 0; i < Emp.length; i++) {
-        let iH = '<div><span>' + Emp[i].Name + '</span><div>群組: '+NC+' , 偏好:'+PA+' , 避開:'+PA+'</div></div>';
+        let iH = '<div><span>' + Emp[i].Name + '</span><div>群組: ' + NC + ' , 偏好:' + PA + ' , 避開:' + PA + '</div></div>';
         $('.Emp-Config .list  ').append(iH)
+        $('.Emp-Config .list  > div').eq(i).find('select').eq(0).find('option').each(function () {
+            if ($(this).text() == Emp[i].Class)
+                $(this).attr('selected', 'selected')
+        })
+        $('.Emp-Config .list  > div').eq(i).find('select').eq(1).find('option').each(function () {
+            if ($(this).text() == Emp[i].Prefer)
+                $(this).attr('selected', 'selected')
+        })
+        $('.Emp-Config .list  > div').eq(i).find('select').eq(2).find('option').each(function () {
+            if ($(this).text() == Emp[i].Avoid)
+                $(this).attr('selected', 'selected')
+        })
+
         //Emp[i].Name
     }
 }
