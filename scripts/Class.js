@@ -69,8 +69,8 @@ class EmpSchedule {
         var empRow = empRow + 1
         var workTime = 0
         for (var day = 1; day <= totalDays; day++) {
-            var c = parseInt(this.sch[emp][day])
-            if (c.toString() == this.sch[emp][day]) {
+            var c = parseInt(this.sch[empRow][day])
+            if (c.toString() == this.sch[empRow][day]) {
                 workTime += 8;
             }
         }
@@ -80,9 +80,9 @@ class EmpSchedule {
     sum_AllHours(totalDays, totalEmps) {
         var blockTotalHours = totalDays + 3
         for (var emp = 1; emp <= totalEmps; emp++) {
-            rowEmpMargin = 1
-            empSumTime = this.sum_EmpHours(totalDays, emp)
-            this.sch[emp + rwoEmpMargin][blockTotalHours] = empSumTime
+            var rowEmpMargin = 1
+            var  empSumTime = this.sum_EmpHours(totalDays, emp)
+            this.sch[emp + rowEmpMargin][blockTotalHours] = empSumTime
         }
     }
 

@@ -83,6 +83,7 @@ function Renew(Sch_E, El) {
         }
     //ReCalculate
     Sch_E.sum_Date(28, El);
+    Sch_E.sum_AllHours(28, El);
 
     //Renew(Sch_E, El);
 
