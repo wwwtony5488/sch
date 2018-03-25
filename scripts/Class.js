@@ -82,7 +82,7 @@ class EmpSchedule {
         for (var emp = 1; emp <= totalEmps; emp++) {
             rowEmpMargin = 1
             empSumTime = this.sum_EmpHours(totalDays, emp)
-            this.sch[emp + rwoEmpMargin][blockTotalHours] = empSumTime
+            this.sch[emp + rowEmpMargin][blockTotalHours] = empSumTime
         }
     }
 
