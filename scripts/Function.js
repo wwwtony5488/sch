@@ -30,24 +30,24 @@ function JSBinding(Sch_E, Emp) {
                 c = confirm('確認此次的範圍編輯?')
             if (c || $('td.Selected').length == 1)
                 //$('td.Selected').html(($('.mark-type.Selected').html() == '休') ? '' : $('.mark-type.Selected').html())
-                $('.mark-type.Selected').html())
-    $('td.Selected').removeClass('Selected')
-    Renew(Sch_E, Emp.length);
-}
+                $('td.Selected').html($('.mark-type.Selected').html())
+            $('td.Selected').removeClass('Selected')
+            Renew(Sch_E, Emp.length);
+        }
     }).dblclick(function () {
-    $(this).addClass('Changed')
-    if ($('.mark-type.Selected').length > 0)
-        return;
-    var tddate = $(this)
-    tddate.html(' <input  class="" type="text"  value="' + $(this).text() + '"/>')
-    $('td input').focus();
-    $('td input').blur(function () {
-        tddate.html($(this).val());
+        $(this).addClass('Changed')
+        if ($('.mark-type.Selected').length > 0)
+            return;
+        var tddate = $(this)
+        tddate.html(' <input  class="" type="text"  value="' + $(this).text() + '"/>')
+        $('td input').focus();
+        $('td input').blur(function () {
+            tddate.html($(this).val());
 
-        Renew(Sch_E, Emp.length);
+            Renew(Sch_E, Emp.length);
+        })
+
     })
-
-})
 }
 function Arrange(Sch_E, Emp) {
     //以前次最後一筆  填滿空格
