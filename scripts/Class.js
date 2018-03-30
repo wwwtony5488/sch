@@ -76,7 +76,6 @@ class EmpSchedule {
         }
         return workTime
     }
-
     sum_AllHours(totalDays, totalEmps) {
         var blockTotalHours = totalDays + 3
         for (var emp = 1; emp <= totalEmps; emp++) {

@@ -20,7 +20,6 @@ function JSBinding(Sch_E, Emp) {
         $('td.date').hover(function () {
             if ($('.mark-type.Selected').length > 0)
                 $(this).addClass('Selected').addClass('Changed');;
-            //$(this).html(($('.mark-type.Selected').html() == '休') ? '' : $('.mark-type.Selected').html())
         })
     }).mouseup(function () {
         $('td.date').unbind('mouseenter').unbind('mouseleave')
@@ -29,8 +28,8 @@ function JSBinding(Sch_E, Emp) {
             if ($('td.Selected').length > 1)
                 c = confirm('確認此次的範圍編輯?')
             if (c || $('td.Selected').length == 1)
-                //$('td.Selected').html(($('.mark-type.Selected').html() == '休') ? '' : $('.mark-type.Selected').html())
-                $('td.Selected').html($('.mark-type.Selected').html())
+                $('td.Selected').html(($('.mark-type.Selected').html() == '休') ? ' ' : $('.mark-type.Selected').html())
+                //$('td.Selected').html($('.mark-type.Selected').html())
             $('td.Selected').removeClass('Selected')
             Renew(Sch_E, Emp.length);
         }
@@ -130,7 +129,7 @@ function Template_Assemble(Emp, Sch) {
         for (var j = 0; j < Sch[i].length; j++) {
             if (i == 0) {
                 if (j == 0)
-                    innerHtml += '<td>date</td>'
+                    innerHtml += '<td>name/date</td>'
                 else if (j < 29)
                     innerHtml += '<td>' + Sch[i][j] + '</td>'
                 else {
@@ -152,8 +151,8 @@ function Template_Assemble(Emp, Sch) {
                     if (i == Emp.length + 2)
                         innerHtml += '<td>總人力</td>'; if (i == Emp.length + 3)
                         innerHtml += '<td>人力1</td>'; if (i == Emp.length + 4)
-                        innerHtml += '<td>總人力2</td>'; if (i == Emp.length + 5)
-                        innerHtml += '<td>總人力3</td>'
+                        innerHtml += '<td>人力2</td>'; if (i == Emp.length + 5)
+                        innerHtml += '<td>人力3</td>'
                 }
 
 
