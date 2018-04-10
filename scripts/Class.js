@@ -97,7 +97,7 @@ class EmpSchedule {
     }
 
     sum_AllNationalHolidayHours(totalDays, totalEmps){
-        var blockTotalHours = totalDays + 3
+        var blockHolidayHours = totalDays + 4
         for (var emp = 1; emp <= totalEmps; emp++) {
             var rowEmpMargin = 1
             var holidaySumTime = this.sum_AllNationalHolidatHours(totalDays, emp)
@@ -117,7 +117,7 @@ class EmpSchedule {
     }
 
     sum_AllOffHours(totalDays, totalEmps){
-        var blockTotalHours = totalDays + 3
+        var blockOffHours = totalDays + 2
         for (var emp = 1; emp <= totalEmps; emp++) {
             var rowEmpMargin = 1
             var holidaySumTime = this.sum_EmpOffHours(totalDays, emp)
