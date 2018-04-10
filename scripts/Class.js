@@ -85,7 +85,7 @@ class EmpSchedule {
         }
     }
 
-    sum_EmpNationalHolidayHours(totalDays, totalEmps){
+    sum_EmpNationalHolidayHours(totalDays, empRow){
         var empRow = empRow + 1
         var nHolidayTime = 0
         for (var day=1;day<=totalDays;day++){
@@ -101,6 +101,26 @@ class EmpSchedule {
         for (var emp = 1; emp <= totalEmps; emp++) {
             var rowEmpMargin = 1
             var holidaySumTime = this.sum_AllNationalHolidatHours(totalDays, emp)
+            this.sch[emp + rowEmpMargin][blockTotalHours] = holidaySumTime
+        }
+    }
+
+    sum_EmpOffHours(totalDays, empRowNumber){
+        var empRow = empRow + 1
+        var workTime = 0
+        for (var day = 1; day <= totalDays; day++) {
+            if (this.sch[empRow][day]=='@'){
+                nHolidayTime += 8 
+            }
+        }
+        return workTime
+    }
+
+    sum_AllOffHours(totalDays, totalEmps){
+        var blockTotalHours = totalDays + 3
+        for (var emp = 1; emp <= totalEmps; emp++) {
+            var rowEmpMargin = 1
+            var holidaySumTime = this.sum_EmpOffHours(totalDays, emp)
             this.sch[emp + rowEmpMargin][blockTotalHours] = holidaySumTime
         }
     }
