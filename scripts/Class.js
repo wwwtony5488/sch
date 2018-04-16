@@ -85,4 +85,45 @@ class EmpSchedule {
         }
     }
 
+    sum_EmpNationalHolidayHours(totalDays, empRow){
+        var empRow = empRow + 1
+        var nHolidayTime = 0
+        for (var day=1;day<=totalDays;day++){
+            if (this.sch[empRow][day]=='#'){
+                nHolidayTime += 8 
+            }
+        }
+        return nHolidayTime
+    }
+
+    sum_AllNationalHolidayHours(totalDays, totalEmps){
+        var blockHolidayHours = totalDays + 4
+        for (var emp = 1; emp <= totalEmps; emp++) {
+            var rowEmpMargin = 1
+            var holidaySumTime = this.sum_EmpNationalHolidayHours(totalDays, emp)//  sum_AllNationalHolidayHours > sum_EmpNationalHolidayHours
+            this.sch[emp + rowEmpMargin][blockHolidayHours] = holidaySumTime
+        }
+    }
+
+    sum_EmpOffHours(totalDays, empRowNumber) {
+        var nHolidayTime=0
+        var empRow = empRowNumber + 1//  empRow > empRowNumber
+        var workTime = 0
+        for (var day = 1; day <= totalDays; day++) {
+            if (this.sch[empRow][day]=='@'){
+                nHolidayTime += 8 
+            }
+        }
+        console.log(nHolidayTime )
+        return nHolidayTime
+    }
+
+    sum_AllOffHours(totalDays, totalEmps){
+        var blockOffHours = totalDays + 2
+        for (var emp = 1; emp <= totalEmps; emp++) {
+            var rowEmpMargin = 1
+            var holidaySumTime = this.sum_EmpOffHours(totalDays, emp)
+            this.sch[emp + rowEmpMargin][blockOffHours] = holidaySumTime
+        }
+    }
 }
